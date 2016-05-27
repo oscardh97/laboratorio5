@@ -18,6 +18,10 @@ bool Pieza::esGeneral(){
 	return this->General;
 }
 
+void Pieza::setViva(bool vida){
+	this->viva=vida;
+}
+
 bool Pieza::esNegra(){
 	return this->Negra;
 }
@@ -41,16 +45,22 @@ void Pieza::setY(int y){
 	this->y=y;
 }
 
-bool Pieza::mover(int x,int y,Pieza** matriz){
+bool Pieza::mover(int x,int y,Pieza** &matriz){
  	if(!Negra&&!General){
  		if(x>=8||y>=8||x<0||y<0){
  			return false;
  		}else if(this->x==x&&this->y==y){
  			return false;
  		}else if( (x==this->x+1||x==this->x-1)&&(y==this->y+1)&&!matriz[y][x].viva){
+			matriz[y][x].setViva(true);
+			matriz[y][x].Negra=true;
+			matriz[this->y][this->x].setViva(false);
  			return true;
  		}else if( (x==this->x+2&&y==this->y+2&&!matriz[this->y+1][this->x+1].esNegra()&&!matriz[y][x].viva)||(x==this->x-2&&y==this->y+2&&!matriz[this->y-1][this->x+1].esNegra()&&!matriz[y][x].viva)){
- 			return true;
+ 			matriz[y][x].setViva(true);
+			matriz[y][x].Negra=true;
+			matriz[this->y][this->x].setViva(false);
+			return true;
  		}else{
  			return false;
  		}
@@ -60,11 +70,16 @@ bool Pieza::mover(int x,int y,Pieza** matriz){
                  }else if(this->x==x&&this->y==y){
                          return false;
                  }else if( (x==this->x+1||x==this->x-1)&&(y==this->y-1)&&!matriz[y][x].viva){
-                         return true;
+			matriz[y][x].setViva(true);
+			matriz[y][x].Negra=false;
+			matriz[this->y][this->x].setViva(false);
+                        return true;
                  }else if( (x==this->x+2&&y==this->y-2&&!matriz[this->y-1][this->x+1].esNegra()&&!matriz[y][x].viva)||(x==this->x-2&&y==this->y-2&&matriz[this->y-1][this->x+1].esNegra()&&!matriz[y][x].viva)){
-                         return true;
+			matriz[y][x].setViva(true);
+			matriz[y][x].Negra=false;	
+                 	return true;
                  }else{
-                         return false;
+                        return false;
                  }
 
  	}

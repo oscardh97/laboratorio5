@@ -13,10 +13,11 @@ public:
 	bool esNegra();
 	bool esGeneral();
 	bool estaViva();
+	void setViva(bool);
 	int getX();
 	int getY();
 	void setX(int);
 	void setY(int);
-	bool mover(int,int,Pieza**);
+	bool mover(int,int,Pieza**&);
 };
 
