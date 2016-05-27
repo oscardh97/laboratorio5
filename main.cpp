@@ -1,9 +1,10 @@
 #include <ncurses.h>
-void imprimirTavlero(int**);
+#include "Pieza.h"
+void imprimirTavlero(Pieza*);
 int caracterAEntero(char);
 int main(int argc, char const *argv[]){
 	initscr();
-	int** matriz = new int*[7];
+	Pieza* matriz = new Pieza[24];
 	start_color();
 	init_pair(1,COLOR_WHITE,COLOR_RED);
 	init_pair(2,COLOR_WHITE,COLOR_GREEN);
@@ -13,9 +14,9 @@ int main(int argc, char const *argv[]){
 	}while(true);
 	return 0;
 }
-void imprimirTavlero(int** matriz){
+void imprimirTavlero(Pieza* pieza){
 	for(int FILA = 0; FILA < 8; FILA++){
-			matriz[FILA] = new int[7];
+			matriz[FILA] = new Pieza[7];
 		for(int COLUMNA = 0; COLUMNA < 8; COLUMNA++){
 			int x = COLUMNA * 5;
 			matriz[FILA][COLUMNA] = -1;
@@ -26,7 +27,7 @@ void imprimirTavlero(int** matriz){
 				}else{
 					attrset (COLOR_PAIR(2));
 				}
-				if(matriz[FILA][COLUMNA] == -1){
+				if(matriz[FILA][COLUMNA] == NULL){
 					printw("       ");
 				}else{					
 					printw("       ");

@@ -1,4 +1,4 @@
-pragma once;
+#pragma once
 #include <string>
 
 using std::string;
@@ -10,13 +10,13 @@ private:
 	bool General;
 public:
 	Pieza();
-	Pieza(int,int,string)
+	Pieza(int,int,bool);
 	bool esNegra();
-	bool esGeneral():
+	bool esGeneral();
 	int getX();
 	int getY();
 	void setX(int);
 	void setY(int);
-	void mover(int,int,Pieza**);
+	bool mover(int,int,Pieza**);
 };
 
