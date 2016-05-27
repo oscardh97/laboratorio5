@@ -41,34 +41,34 @@ void Pieza::setY(int y){
 	this->y=y;
 }
 
-// bool Pieza::mover(int x,int y,Pieza** matriz){
-// 	if(!Negra&&!General){
-// 		if(x>=8||y>=8||x<0||y<0){
-// 			return false;
-// 		}else if(this->x==x&&this->y==y){
-// 			return false;
-// 		}else if( (x==this->x+1||x==this->x-1)&&(y==this->y+1)&&matriz[y][x]==NULL){
-// 			return true;
-// 		}else if( (x==this->x+2&&y==this->y+2&&!matriz[this->y+1][this->x+1].esNegra()&&matriz[y][x]==NULL)||(x==this->x-2&&y==this->y+2&&!matriz[this->y-1][this->x+1].esNegra()&&matriz[y][x]==NULL)){
-// 			return true;
-// 		}else{
-// 			return false;
-// 		}
-// 	}else if(Negra&&!General){
-// 		if(x>=8||y>=8||x<0||y<0){
-//                         return false;
-//                 }else if(this->x==x&&this->y==y){
-//                         return false;
-//                 }else if( (x==this->x+1||x==this->x-1)&&(y==this->y-1)&&matriz[y][x]==NULL){
-//                         return true;
-//                 }else if( (x==this->x+2&&y==this->y-2&&!matriz[this->y-1][this->x+1].esNegra()&&matriz[y][x]==NULL)||(x==this->x-2&&y==this->y-2&&matriz[this->y-1][this->x+1].esNegra()&&matriz[y][x]==NULL)){
-//                         return true;
-//                 }else{
-//                         return false;
-//                 }
+bool Pieza::mover(int x,int y,Pieza** matriz){
+ 	if(!Negra&&!General){
+ 		if(x>=8||y>=8||x<0||y<0){
+ 			return false;
+ 		}else if(this->x==x&&this->y==y){
+ 			return false;
+ 		}else if( (x==this->x+1||x==this->x-1)&&(y==this->y+1)&&!matriz[y][x].viva){
+ 			return true;
+ 		}else if( (x==this->x+2&&y==this->y+2&&!matriz[this->y+1][this->x+1].esNegra()&&!matriz[y][x].viva)||(x==this->x-2&&y==this->y+2&&!matriz[this->y-1][this->x+1].esNegra()&&!matriz[y][x].viva)){
+ 			return true;
+ 		}else{
+ 			return false;
+ 		}
+ 	}else if(Negra&&!General){
+ 		if(x>=8||y>=8||x<0||y<0){
+                         return false;
+                 }else if(this->x==x&&this->y==y){
+                         return false;
+                 }else if( (x==this->x+1||x==this->x-1)&&(y==this->y-1)&&!matriz[y][x].viva){
+                         return true;
+                 }else if( (x==this->x+2&&y==this->y-2&&!matriz[this->y-1][this->x+1].esNegra()&&!matriz[y][x].viva)||(x==this->x-2&&y==this->y-2&&matriz[this->y-1][this->x+1].esNegra()&&!matriz[y][x].viva)){
+                         return true;
+                 }else{
+                         return false;
+                 }
 
-// 	}
-// }
+ 	}
+ }
 
 
 
