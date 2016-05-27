@@ -6,13 +6,13 @@ using std::string;
 class Pieza{
 private:
 	int x,y;
-	bool Negra;
-	bool General;
+	bool Negra, General, viva;
 public:
 	Pieza();
 	Pieza(int,int,bool);
 	bool esNegra();
 	bool esGeneral();
+	bool estaViva();
 	int getX();
 	int getY();
 	void setX(int);
