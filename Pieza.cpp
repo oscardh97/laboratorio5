@@ -4,7 +4,7 @@
 using std::string;
 
 Pieza::Pieza(){
-	this->viva = false;
+	this->viva = 0;
 }
 
 Pieza::Pieza(int x,int y,bool color){
@@ -46,19 +46,20 @@ void Pieza::setY(int y){
 }
 
 bool Pieza::mover(int x,int y,Pieza** &matriz){
+	// return matriz[x][y].estaViva();
  	if(!Negra&&!General){
  		if(x>=8||y>=8||x<0||y<0){
  			return false;
  		}else if(this->x==x&&this->y==y){
  			return false;
- 		}else if( (x==this->x+1||x==this->x-1)&&(y==this->y+1)&&!matriz[y][x].viva){
-			matriz[y][x].setViva(true);
-			matriz[y][x].CambiarColor();
+ 		}else if( (x + 1==this->x||x-1==this->x)&&(y - 1==this->y)&&!matriz[x][y].estaViva()){
+			matriz[x][y].setViva(true);
+			matriz[x][y].CambiarColor(Negra);
 			setViva(false);
  			return true;
  		}else if( (x==this->x+2&&y==this->y+2&&!matriz[this->y+1][this->x+1].esNegra()&&!matriz[y][x].viva)||(x==this->x-2&&y==this->y+2&&!matriz[this->y-1][this->x+1].esNegra()&&!matriz[y][x].viva)){
  			matriz[y][x].setViva(true);
-			matriz[y][x].CambiarColor();
+			matriz[y][x].CambiarColor(Negra);
 			setViva(false);
 			return true;
  		}else{
@@ -71,12 +72,12 @@ bool Pieza::mover(int x,int y,Pieza** &matriz){
                          return false;
                  }else if( (x==this->x+1||x==this->x-1)&&(y==this->y-1)&&!matriz[y][x].viva){
 			matriz[y][x].setViva(true);
-			matriz[y][x].CambiarColor();
+			matriz[y][x].CambiarColor(Negra);
 			setViva(false);
                         return true;
                  }else if( (x==this->x+2&&y==this->y-2&&!matriz[this->y-1][this->x+1].esNegra()&&!matriz[y][x].viva)||(x==this->x-2&&y==this->y-2&&matriz[this->y-1][this->x+1].esNegra()&&!matriz[y][x].viva)){
 			matriz[y][x].setViva(true);
-			matriz[y][x].CambiarColor();
+			matriz[y][x].CambiarColor(Negra);
 			setViva(false);
                  	return true;
                  }else{
@@ -86,8 +87,8 @@ bool Pieza::mover(int x,int y,Pieza** &matriz){
  	}
  }
 
-void Pieza::CambiarColor(){
-	this->Negra==!Negra;
+void Pieza::CambiarColor(bool negra){
+	this->Negra=negra;
 
 }
 

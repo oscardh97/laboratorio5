@@ -13,7 +13,7 @@ public:
 	bool esNegra();
 	bool esGeneral();
 	bool estaViva();
-	void CambiarColor();
+	void CambiarColor(bool);
 	void setViva(bool);
 	int getX();
 	int getY();
