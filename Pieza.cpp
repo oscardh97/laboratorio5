@@ -53,11 +53,13 @@ bool Pieza::mover(int x,int y,Pieza** &matriz){
  			return false;
  		}else if( (x==this->x+1||x==this->x-1)&&(y==this->y+1)&&!matriz[y][x].viva){
 			matriz[y][x].setViva(true);
-			matriz[this->y][this->x].setViva(false);
+			matriz[y][x].CambiarColor();
+			setViva(false);
  			return true;
  		}else if( (x==this->x+2&&y==this->y+2&&!matriz[this->y+1][this->x+1].esNegra()&&!matriz[y][x].viva)||(x==this->x-2&&y==this->y+2&&!matriz[this->y-1][this->x+1].esNegra()&&!matriz[y][x].viva)){
  			matriz[y][x].setViva(true);
-			matriz[this->y][this->x].setViva(false);
+			matriz[y][x].CambiarColor();
+			setViva(false);
 			return true;
  		}else{
  			return false;
@@ -69,10 +71,13 @@ bool Pieza::mover(int x,int y,Pieza** &matriz){
                          return false;
                  }else if( (x==this->x+1||x==this->x-1)&&(y==this->y-1)&&!matriz[y][x].viva){
 			matriz[y][x].setViva(true);
-			matriz[this->y][this->x].setViva(false);
+			matriz[y][x].CambiarColor();
+			setViva(false);
                         return true;
                  }else if( (x==this->x+2&&y==this->y-2&&!matriz[this->y-1][this->x+1].esNegra()&&!matriz[y][x].viva)||(x==this->x-2&&y==this->y-2&&matriz[this->y-1][this->x+1].esNegra()&&!matriz[y][x].viva)){
 			matriz[y][x].setViva(true);
+			matriz[y][x].CambiarColor();
+			setViva(false);
                  	return true;
                  }else{
                         return false;
@@ -81,5 +86,8 @@ bool Pieza::mover(int x,int y,Pieza** &matriz){
  	}
  }
 
+void Pieza::CambiarColor(){
+	this->Negra==!Negra;
 
+}
 
